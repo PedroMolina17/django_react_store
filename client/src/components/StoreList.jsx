@@ -19,18 +19,6 @@ export function StoreList() {
           <h1>{store.nombre}</h1>
           <img src={store.imagen} alt={store.nombre} />
           <div>{store.imagen}</div>
-          <img
-            src="../../../producto_imagenes/rmp365fypu_izquierda.jpg"
-            alt={store.nombre}
-          />
-          <img
-            src="/../../../producto_imagenes/rmp365fypu_izquierda.jpg"
-            alt={store.nombre}
-          />
-          <img
-            src="../../producto_imagenes/rmp365fypu_izquierda.jpg"
-            alt={store.nombre}
-          />
         </div>
       ))}
     </div>

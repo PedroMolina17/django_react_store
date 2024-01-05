@@ -137,3 +137,6 @@ REST_FRAMEWORK = {
     ...: ...,
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
+
+MEDIA_ROOT = BASE_DIR / "files"
+MEDIA_URL = '/media-files/'
