@@ -8,11 +8,13 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Navigation />
-        <Routes>
-          <Route path="/" element={<Navigate to="/store" />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/store-create" element={<StoreForm />} />
-        </Routes>
+        <div className="container mx-auto px-12 ">
+          <Routes>
+            <Route path="/" element={<Navigate to="/store" />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="/store-create" element={<StoreForm />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );

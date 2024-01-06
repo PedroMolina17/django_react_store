@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
-    <nav className="flex bg-[#ac1f8d] justify-end items-center p-8">
+    <nav className="flex  bg-[#ac1f8d] justify-end items-center p-8">
       <ul className="">
         <li className="flex text-xl">
           <Link
