@@ -17,12 +17,42 @@ export function StoreList() {
       <div className="flex justify-center ">
         <h1 className="text-4xl p-4">Productos</h1>{" "}
       </div>
-      <div className="m-10 grid grid-cols-5 gap-7 max-md:grid-cols-1 text-center">
+      <div className="m-10 grid grid-cols-4 gap-6 max-md:grid-cols-1 text-center">
         {store.map((store) => (
-          <div key={store.id} className="border">
+          <div key={store.id} className="border ">
             <h1 className="m-0 p-0">{store.nombre}</h1>
             <img
-              className=""
+              className="items-center justify-center mx-auto"
+              src={store.imagen}
+              alt={store.nombre}
+              width={200}
+              height={200}
+            />
+            <button className="border p-4 bg-gradient-to-br text-md  rounded-md text-white from-[#f67ce0] to-[#cf2aad]">
+              Comprar
+            </button>
+          </div>
+        ))}
+        {store.map((store) => (
+          <div key={store.id} className="border ">
+            <h1 className="m-0 p-0">{store.nombre}</h1>
+            <img
+              className="items-center justify-center mx-auto"
+              src={store.imagen}
+              alt={store.nombre}
+              width={200}
+              height={200}
+            />
+            <button className="border p-4 bg-gradient-to-br text-md  rounded-md text-white from-[#f67ce0] to-[#cf2aad]">
+              Comprar
+            </button>
+          </div>
+        ))}
+        {store.map((store) => (
+          <div key={store.id} className="border ">
+            <h1 className="m-0 p-0">{store.nombre}</h1>
+            <img
+              className="items-center justify-center mx-auto"
               src={store.imagen}
               alt={store.nombre}
               width={200}
