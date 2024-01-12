@@ -5,6 +5,7 @@ from rest_framework.documentation import include_docs_urls
 router = routers.DefaultRouter()
 router.register(r'store', StoreView, 'store')
 router.register(r'games', GamesView, 'games')
+router.register(r'categoria', GamesView, 'categoria')
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),
