@@ -9,6 +9,7 @@ export function StoreList() {
     async function loadStore() {
       const res = await getAllStore();
       setStore(res.data);
+      console.log(res.data);
     }
 
     loadStore();
@@ -27,6 +28,7 @@ export function StoreList() {
               imagen={storeitem.imagen}
               nombre={storeitem.nombre}
               id={storeitem.id}
+              precio={storeitem.precio}
             />
           ))}
       </div>
