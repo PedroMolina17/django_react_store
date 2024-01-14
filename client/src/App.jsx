@@ -4,6 +4,7 @@ import StoreForm from "./pages/StoreForm";
 import Navigation from "./components/Navigation";
 import Product from "./pages/Product";
 import Producto from "./pages/Producto";
+import Games from "./pages/Games";
 const App = () => {
   return (
     <div>
@@ -14,6 +15,7 @@ const App = () => {
             <Route path="/" element={<Navigate to="/store" />} />
             <Route path="/store" element={<Store />} />
             <Route path="/store-create" element={<StoreForm />} />
+            <Route path="/games" element={<Games />} />
             <Route path="/products" element={<Product />} />
             <Route path="/productos" element={<Producto />} />
           </Routes>

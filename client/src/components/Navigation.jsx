@@ -19,10 +19,10 @@ const Navigation = () => {
             Productos
           </Link>
           <Link
-            to="/store/"
+            to="/games/"
             className="text-[#fff4fe] hover:underline hover:text-gray-300 px-9 py-1"
           >
-            Store
+            Juegos
           </Link>{" "}
           <Link
             to="/productos/"

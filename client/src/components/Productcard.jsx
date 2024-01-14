@@ -1,5 +1,12 @@
 import PropTypes from "prop-types";
-const Productcard = ({ imagen, nombre, id, additionalClass, precio }) => {
+const Productcard = ({
+  imagen,
+  nombre,
+  id,
+  additionalClass,
+  precio,
+  onAddToCart,
+}) => {
   return (
     <div>
       <div key={id} className="border ">
@@ -11,7 +18,10 @@ const Productcard = ({ imagen, nombre, id, additionalClass, precio }) => {
           style={{ width: "200px", height: "200px", objectFit: "cover" }}
         />
         <h1 className="py-3 text-sm font-bold">{precio}</h1>
-        <button className="border p-4 bg-gradient-to-br text-md rounded-md text-white from-[#f67ce0] to-[#cf2aad] hover:from-[#cf2aad] hover:to-[#cf2aad]">
+        <button
+          className="border p-4 bg-gradient-to-br text-md rounded-md text-white from-[#f67ce0] to-[#cf2aad] hover:from-[#cf2aad] hover:to-[#cf2aad]"
+          onClick={onAddToCart}
+        >
           Comprar
         </button>
       </div>
@@ -25,6 +35,7 @@ Productcard.propTypes = {
   id: PropTypes.any.isRequired,
   additionalClass: PropTypes.any,
   precio: PropTypes.any.isRequired,
+  onAddToCart: PropTypes.func,
 };
 
 export default Productcard;

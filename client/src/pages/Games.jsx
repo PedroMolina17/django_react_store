@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
-import { getAllStore } from "../api/games.api";
+import { getAllStoreByCategoria } from "../api/game.api";
 import Productcard from "../components/Productcard";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../features/product/cartSlice";
 
-export default function StoreForm() {
+export default function Games() {
   const [store, setStore] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function loadStore() {
-      const res = await getAllStore();
+      const res = await getAllStoreByCategoria();
       setStore(res.data);
     }
 
     loadStore();
   }, []);
+
+  const handleAddToCart = (store) => {
+    dispatch(addToCart(store));
+  };
+
+  console.log(useSelector((state) => state.cart.cartItems));
 
   return (
     <div>
@@ -24,11 +33,12 @@ export default function StoreForm() {
           store.map((storeitem) => (
             <Productcard
               key={storeitem.id}
-              imagen={storeitem.imagen}
+              imagen={"http://localhost:8000/" + storeitem.imagen}
               nombre={storeitem.nombre}
               id={storeitem.id}
               precio={storeitem.precio}
               additionalClass="py-2"
+              onAddToCart={() => handleAddToCart(storeitem)}
             />
           ))}
       </div>
