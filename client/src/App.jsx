@@ -3,6 +3,7 @@ import Store from "./pages/Store";
 import StoreForm from "./pages/StoreForm";
 import Navigation from "./components/Navigation";
 import Product from "./pages/Product";
+import Producto from "./pages/Producto";
 const App = () => {
   return (
     <div>
@@ -14,6 +15,7 @@ const App = () => {
             <Route path="/store" element={<Store />} />
             <Route path="/store-create" element={<StoreForm />} />
             <Route path="/products" element={<Product />} />
+            <Route path="/productos" element={<Producto />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -9,7 +9,6 @@ export default function Product() {
     async function loadStore() {
       const res = await getAllStore();
       setStore(res.data);
-      console.log(res.data);
     }
 
     loadStore();

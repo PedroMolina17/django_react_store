@@ -25,7 +25,7 @@ const Navigation = () => {
             Store
           </Link>{" "}
           <Link
-            to="/products/"
+            to="/productos/"
             className="text-[#fff4fe] hover:underline hover:text-gray-300 px-9 py-1"
           >
             Productos

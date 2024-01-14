@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { getAllStore } from "../api/store.api";
-import Productcard from "./Productcard";
+import { getAllStoreByCategoria } from "../api/producto.api";
+import Productcard from "../components/Productcard";
 
-export function StoreList() {
+export default function Producto() {
   const [store, setStore] = useState([]);
 
   useEffect(() => {
     async function loadStore() {
-      const res = await getAllStore();
+      const res = await getAllStoreByCategoria();
       setStore(res.data);
       console.log(res.data);
     }
@@ -25,10 +25,11 @@ export function StoreList() {
           store.map((storeitem) => (
             <Productcard
               key={storeitem.id}
-              imagen={storeitem.imagen}
+              imagen={"http://localhost:8000/" + storeitem.imagen}
               nombre={storeitem.nombre}
               id={storeitem.id}
               precio={storeitem.precio}
+              additionalClass="py-2"
             />
           ))}
       </div>

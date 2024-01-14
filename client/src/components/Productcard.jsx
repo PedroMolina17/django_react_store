@@ -23,7 +23,7 @@ Productcard.propTypes = {
   imagen: PropTypes.string.isRequired,
   nombre: PropTypes.string.isRequired,
   id: PropTypes.any.isRequired,
-  additionalClass: PropTypes.any.isRequired,
+  additionalClass: PropTypes.any,
   precio: PropTypes.any.isRequired,
 };
 
