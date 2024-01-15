@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllStoreByCategoria } from "../api/producto.api";
 import Productcard from "../components/Productcard";
 import { addToCart } from "../features/product/cartSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Producto() {
   const [store, setStore] = useState([]);
@@ -23,7 +25,9 @@ export default function Producto() {
 
   const handleAddToCart = (store) => {
     dispatch(addToCart({ ...store, cantidad: (store.cantidad || 0) + 1 }));
+    toast.success("Producto Añadido!");
   };
+
   console.log(useSelector((state) => state.cart.cartItems));
 
   return (
@@ -44,6 +48,19 @@ export default function Producto() {
               onAddToCart={() => handleAddToCart(storeitem)}
             />
           ))}
+
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </div>
   );
