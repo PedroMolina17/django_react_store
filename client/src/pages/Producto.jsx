@@ -22,7 +22,7 @@ export default function Producto() {
   }, []);
 
   const handleAddToCart = (store) => {
-    dispatch(addToCart(store));
+    dispatch(addToCart({ ...store, cantidad: (store.cantidad || 0) + 1 }));
   };
   console.log(useSelector((state) => state.cart.cartItems));
 

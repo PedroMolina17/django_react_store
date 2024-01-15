@@ -9,7 +9,16 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.cartItems = [...state.cartItems, action.payload];
+      const { id, nombre, precio, cantidad } = action.payload;
+      const existingItemIndex = state.cartItems.findIndex(
+        (item) => item.id === id
+      );
+
+      if (existingItemIndex !== -1) {
+        state.cartItems[existingItemIndex].cantidad += cantidad;
+      } else {
+        state.cartItems.push({ id, nombre, precio, cantidad });
+      }
     },
   },
 });
