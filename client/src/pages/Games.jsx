@@ -3,6 +3,8 @@ import { getAllStoreByCategoria } from "../api/game.api";
 import Productcard from "../components/Productcard";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../features/product/cartSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "../assets/ReactToastify.css";
 
 export default function Games() {
   const [store, setStore] = useState([]);
@@ -13,12 +15,16 @@ export default function Games() {
       const res = await getAllStoreByCategoria();
       setStore(res.data);
     }
-
     loadStore();
   }, []);
 
-  const handleAddToCart = (store) => {
+  const handleAddToCart = async (store) => {
     dispatch(addToCart({ ...store, cantidad: (store.cantidad || 0) + 1 }));
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (document.getElementById("root")) {
+      toast("Producto Añadido! ✅ ");
+    }
   };
 
   console.log(useSelector((state) => state.cart.cartItems));
@@ -41,6 +47,18 @@ export default function Games() {
               onAddToCart={() => handleAddToCart(storeitem)}
             />
           ))}
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </div>
   );

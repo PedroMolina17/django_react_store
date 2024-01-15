@@ -19,13 +19,15 @@ export default function Producto() {
         console.error("Error loading store:", error);
       }
     }
-
     loadStore();
   }, []);
 
-  const handleAddToCart = (store) => {
+  const handleAddToCart = async (store) => {
     dispatch(addToCart({ ...store, cantidad: (store.cantidad || 0) + 1 }));
-    toast.success("Producto Añadido!");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (document.getElementById("root")) {
+      toast("Producto Añadido! ✅ ");
+    }
   };
 
   console.log(useSelector((state) => state.cart.cartItems));
@@ -56,7 +58,7 @@ export default function Producto() {
           newestOnTop={false}
           closeOnClick
           rtl={false}
-          pauseOnFocusLoss
+          pauseOnFocusLoss={false}
           draggable
           pauseOnHover
           theme="light"
