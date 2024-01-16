@@ -2,14 +2,20 @@ import { Link } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
 import { HiOutlineXMark } from "react-icons/hi2";
 import { HiMiniBars3 } from "react-icons/hi2";
-
-import { useSelector } from "react-redux";
+import { updateQuantity } from "../features/product/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { CgMathPlus, CgMathMinus } from "react-icons/cg";
+
 const Navigation = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [shopOpen, setshopOpen] = useState(false);
 
+  const handleQuantityChange = (index, newQuantity) => {
+    dispatch(updateQuantity({ index, newQuantity }));
+  };
   return (
     <div className="flex justify-between bg-[#ac1f8d] p-3">
       <nav className="flex fixed z-10 bg-[#ac1f8d] justify-between items-center p-8 px-32 max-md:hidden top-0 right-0 left-0">
@@ -43,8 +49,8 @@ const Navigation = () => {
           </li>
         </ul>{" "}
         <Link
-          to="/"
           className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2 py-1 relative"
+          onClick={() => setshopOpen(!shopOpen)}
         >
           <FaCartShopping className="text-2xl relative"></FaCartShopping>
           {cartItems.length > 0 && (
@@ -52,7 +58,42 @@ const Navigation = () => {
               {cartItems.length}
             </span>
           )}
-        </Link>{" "}
+        </Link>
+        {shopOpen && (
+          <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col  w-1/4   ">
+            {cartItems.map((item, index) => (
+              <div className="flex py-2 justify-between " key={index}>
+                <div className="flex justify-start items-center">
+                  <img
+                    src={"http://localhost:8000/" + item.imagen}
+                    className="w-8 h-8"
+                    alt={item.nombre}
+                  ></img>
+                  <span className="mx-2">{item.nombre}</span>{" "}
+                </div>
+                <div className="">
+                  <button>
+                    <CgMathMinus></CgMathMinus>
+                  </button>
+                  <input
+                    type="number"
+                    value={item.cantidad}
+                    onChange={(e) =>
+                      handleQuantityChange(index, e.target.value)
+                    }
+                    className="w-12 text-center"
+                  />
+                  <button>
+                    <CgMathPlus></CgMathPlus>
+                  </button>
+                </div>
+              </div>
+            ))}
+            <button className="font-bold py-4 px-14 bg-[#ac1f8d] text-white rounded-md">
+              COMPRAR
+            </button>
+          </div>
+        )}
       </nav>
       {/*Mobile Menu */}
       <div className="mobile-menu block md:hidden bg-[#ac1f8d] ">
@@ -112,54 +153,3 @@ const Navigation = () => {
   );
 };
 export default Navigation;
-
-/**
-const Navbar = () => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  return (
-
-    <>
-      <nav className=" fixed mx-auto border border-[#33353F] top-0 right-0 left-0 z-10 bg-[#121212] bg-opacity-100">
-        <div className="flex flex-wrap items-center justify-between mx-auto px-4 py-2">
-          <Link
-            href={"/"}
-            className="text-2xl md:text-5xl text-white font-semibold"
-          >
-            Pedro M.
-          </Link>
-          {/** Menu Overlay }
-          <div className="mobile-menu block md:hidden">
-            {!navbarOpen ? (
-              <button
-                onClick={() => setNavbarOpen(true)}
-                className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
-              >
-                <Bars3Icon className="h-5 w-5" />
-              </button>
-            ) : (
-              <button
-                onClick={() => setNavbarOpen(false)}
-                className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
-              >
-                <XMarkIcon className="h-5 w-5" />
-              </button>
-            )}
-          </div>
-
-          <div className="menu hidden md:block md:w-auto" id="navbar">
-            <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
-              {navLinks.map((link, index) => (
-                <li key={index}>
-                  <NavLink href={link.path} title={link.title} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
-      </nav>
-    </>
-  );
-};
-
-*/
