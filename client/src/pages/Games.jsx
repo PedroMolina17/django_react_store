@@ -21,7 +21,7 @@ export default function Games() {
   const handleAddToCart = async (store) => {
     dispatch(addToCart({ ...store, cantidad: (store.cantidad || 0) + 1 }));
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     if (document.getElementById("root")) {
       toast("Producto Añadido! ✅ ");
     }
@@ -49,7 +49,7 @@ export default function Games() {
           ))}
         <ToastContainer
           position="bottom-right"
-          autoClose={5000}
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

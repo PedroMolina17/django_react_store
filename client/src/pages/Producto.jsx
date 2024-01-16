@@ -24,7 +24,7 @@ export default function Producto() {
 
   const handleAddToCart = async (store) => {
     dispatch(addToCart({ ...store, cantidad: (store.cantidad || 0) + 1 }));
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 10));
     if (document.getElementById("root")) {
       toast("Producto Añadido! ✅ ");
     }
@@ -33,8 +33,8 @@ export default function Producto() {
   console.log(useSelector((state) => state.cart.cartItems));
 
   return (
-    <div>
-      <div className="flex justify-center">
+    <div className="">
+      <div className="flex justify-center ">
         <h1 className="text-4xl p-4">Productos</h1>
       </div>
       <div className="m-10 grid grid-cols-4 gap-6 max-md:grid-cols-1 text-center">
@@ -53,7 +53,7 @@ export default function Producto() {
 
         <ToastContainer
           position="bottom-right"
-          autoClose={5000}
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

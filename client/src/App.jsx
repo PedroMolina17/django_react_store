@@ -5,12 +5,13 @@ import Navigation from "./components/Navigation";
 import Product from "./pages/Product";
 import Producto from "./pages/Producto";
 import Games from "./pages/Games";
+
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Navigation />
-        <div className="container mx-auto px-12 ">
+        <div className="container mx-auto px-12 mt-24 ">
           <Routes>
             <Route path="/" element={<Navigate to="/store" />} />
             <Route path="/store" element={<Store />} />
