@@ -6,12 +6,14 @@ import { updateQuantity } from "../features/product/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
+import { VscAccount } from "react-icons/vsc";
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [shopOpen, setshopOpen] = useState(false);
+  const [login, setLogin] = useState(false);
 
   const handleQuantityChange = (index, newQuantity) => {
     dispatch(updateQuantity({ index, newQuantity }));
@@ -47,18 +49,59 @@ const Navigation = () => {
               Productos
             </Link>
           </li>
-        </ul>{" "}
-        <Link
-          className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2 py-1 relative"
-          onClick={() => setshopOpen(!shopOpen)}
-        >
-          <FaCartShopping className="text-2xl relative"></FaCartShopping>
-          {cartItems.length > 0 && (
-            <span className="absolute h-6 w-6 bg-white border-white text-black rounded-full top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center text-sm font-bold">
-              {cartItems.length}
-            </span>
-          )}
-        </Link>
+        </ul>
+        <div className="flex items-center gap-6">
+          {/* Login*/}
+
+          <Link
+            className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2
+            py-1 relative"
+            onClick={() => setLogin(!login) && setshopOpen(false)}
+          >
+            <VscAccount className="text-2xl relative "></VscAccount>
+          </Link>
+
+          {/* Shop Open*/}
+          <Link
+            className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2 py-1 relative"
+            onClick={() => setshopOpen(!shopOpen)}
+          >
+            <FaCartShopping className="text-2xl relative"></FaCartShopping>
+            {cartItems.length > 0 && (
+              <span className="absolute h-6 w-6 bg-white border-white text-black rounded-full top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center text-sm font-bold">
+                {cartItems.length}
+              </span>
+            )}
+          </Link>
+        </div>
+
+        {/* Login Div*/}
+        {login && (
+          <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col font-bold  text-center w-1/4   ">
+            <label>
+              {" "}
+              <p> Usuario:</p>
+              <input
+                type="text"
+                placeholder="example@gmail.com"
+                className="border border-black p-1 my-2"
+              ></input>
+            </label>
+            <label>
+              {" "}
+              <p> Contraseña:</p>
+              <input
+                type="password"
+                placeholder="****************"
+                className="border border-black p-1 my-2"
+              ></input>
+            </label>
+            <button className="font-bold py-4 px-14 bg-[#ac1f8d] text-white rounded-md my-1">
+              Ingresar
+            </button>
+          </div>
+        )}
+        {/* Shop Div*/}
         {shopOpen && (
           <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col  w-1/4   ">
             {cartItems.map((item, index) => (
@@ -71,7 +114,7 @@ const Navigation = () => {
                   ></img>
                   <span className="mx-2">{item.nombre}</span>{" "}
                 </div>
-                <div className="">
+                <div>
                   <button>
                     <CgMathMinus></CgMathMinus>
                   </button>
@@ -89,7 +132,7 @@ const Navigation = () => {
                 </div>
               </div>
             ))}
-            <button className="font-bold py-4 px-14 bg-[#ac1f8d] text-white rounded-md">
+            <button className="font-bold py-4 px-14 bg-[#ac1f8d] text-white rounded-md my-1">
               COMPRAR
             </button>
           </div>
@@ -148,7 +191,7 @@ const Navigation = () => {
             <FaCartShopping className="h-5 w-5" />
           </button>
         )}
-      </div>{" "}
+      </div>
     </div>
   );
 };
