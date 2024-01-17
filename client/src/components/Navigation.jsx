@@ -55,8 +55,11 @@ const Navigation = () => {
 
           <Link
             className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2
-            py-1 relative"
-            onClick={() => setLogin(!login) && setshopOpen(false)}
+                py-1 relative"
+            onClick={() => {
+              setLogin(!login);
+              setshopOpen(false);
+            }}
           >
             <VscAccount className="text-2xl relative "></VscAccount>
           </Link>
@@ -64,11 +67,14 @@ const Navigation = () => {
           {/* Shop Open*/}
           <Link
             className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2 py-1 relative"
-            onClick={() => setshopOpen(!shopOpen)}
+            onClick={() => {
+              setshopOpen(!shopOpen);
+              setLogin(false);
+            }}
           >
             <FaCartShopping className="text-2xl relative"></FaCartShopping>
             {cartItems.length > 0 && (
-              <span className="absolute h-6 w-6 bg-white border-white text-black rounded-full top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center text-sm font-bold">
+              <span className="absolute h-6 w-6 bg-white border-white text-black rounded-full top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-center text-sm font-bold">
                 {cartItems.length}
               </span>
             )}
