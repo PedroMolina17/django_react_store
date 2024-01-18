@@ -19,7 +19,7 @@ const Productcard = ({
         />
         <h1 className="py-3 text-sm font-bold">{precio}</h1>
         <button
-          className="border p-4 bg-gradient-to-br text-md rounded-md text-white from-[#f67ce0] to-[#cf2aad] hover:from-[#cf2aad] hover:to-[#cf2aad]"
+          className="border p-4 bg-gradient-to-br text-md rounded-md text-white from-[#c0b8ec] to-[#6d57e2] hover:from-[#6d57e2] hover:to-[#6d57e2]"
           onClick={onAddToCart}
         >
           Comprar
