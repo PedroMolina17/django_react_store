@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
 import { HiOutlineXMark } from "react-icons/hi2";
 import { HiMiniBars3 } from "react-icons/hi2";
-import { updateQuantity } from "../features/product/cartSlice";
+import {
+  updateQuantity,
+  removeItemFromCart,
+} from "../features/product/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaTrash } from "react-icons/fa";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -15,8 +18,17 @@ const Navigation = () => {
   const [shopOpen, setshopOpen] = useState(false);
   const [login, setLogin] = useState(false);
 
-  const handleQuantityChange = (index, newQuantity) => {
-    dispatch(updateQuantity({ index, newQuantity }));
+  const handleQuantityChange = (id, newQuantity) => {
+    const quantity =
+      newQuantity === "" || isNaN(newQuantity) ? 0 : parseInt(newQuantity, 10);
+    if (quantity > 0) {
+      dispatch(updateQuantity({ id, newQuantity: quantity }));
+    } else {
+      dispatch(removeItemFromCart(id));
+    }
+  };
+  const removeItem = (id) => {
+    dispatch(removeItemFromCart(id));
   };
   return (
     <div className="">
@@ -133,19 +145,33 @@ const Navigation = () => {
                       <span className="mx-2">{item.nombre}</span>{" "}
                     </div>
                     <div>
-                      <button>
+                      <button
+                        onClick={() =>
+                          handleQuantityChange(item.id, item.cantidad - 1)
+                        }
+                      >
                         <CgMathMinus></CgMathMinus>
                       </button>
                       <input
                         type="number"
                         value={item.cantidad}
                         onChange={(e) =>
-                          handleQuantityChange(index, e.target.value)
+                          handleQuantityChange(item.id, e.target.value)
                         }
-                        className="w-12 text-center"
+                        className="w-12 text-center border"
                       />
-                      <button>
+                      <button
+                        onClick={() =>
+                          handleQuantityChange(item.id, item.cantidad + 1)
+                        }
+                      >
                         <CgMathPlus></CgMathPlus>
+                      </button>
+                      <button
+                        className="mx-2 text-red-400"
+                        onClick={() => removeItem(item.id)}
+                      >
+                        <FaTrash></FaTrash>
                       </button>
                     </div>
                   </div>
@@ -175,6 +201,7 @@ const Navigation = () => {
             </button>
           )}
         </div>
+        <span></span>
         {navbarOpen ? (
           <ul className="flex flex-col py-4 items-center justify-center text-center">
             <li>
@@ -229,7 +256,7 @@ const Navigation = () => {
             {" "}
             <p> Usuario:</p>
             <input
-              type="text"
+              type="email"
               placeholder="example@gmail.com"
               className="border border-black p-1 my-2"
             ></input>
@@ -274,7 +301,11 @@ const Navigation = () => {
                   <span className="mx-2">{item.nombre}</span>{" "}
                 </div>
                 <div>
-                  <button>
+                  <button
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.cantidad - 1)
+                    }
+                  >
                     <CgMathMinus></CgMathMinus>
                   </button>
                   <input
@@ -285,7 +316,11 @@ const Navigation = () => {
                     }
                     className="w-12 text-center"
                   />
-                  <button>
+                  <button
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.cantidad + 1)
+                    }
+                  >
                     <CgMathPlus></CgMathPlus>
                   </button>
                 </div>
