@@ -109,13 +109,13 @@ const Navigation = () => {
                 to="/register/"
                 className="text-[#2e282e] underline  hover:text-gray-300 px-9 py-1"
               >
-                Register
+                Registrar
               </Link>
             </div>
           )}
           {/* Shop Div*/}
           {shopOpen && (
-            <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col w-1/4 animate-fade-down ">
+            <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col w-1/4 animate-fade-down max-md:hidden">
               {cartItems.length === 0 ? (
                 <p className="text-gray-500 text-center py-4 text-xl">
                   El carrito está vacío.
@@ -221,8 +221,42 @@ const Navigation = () => {
           </Link>
         </div>
       </div>{" "}
+      {login && (
+        <div className="fixed bottom-0  left-0 right-0 bg-white border border-gray-300 p-4 flex flex-col font-bold  text-center items-center w-full md:hidden  ">
+          <VscAccount className="text-4xl"></VscAccount>
+          <label>
+            {" "}
+            <p> Usuario:</p>
+            <input
+              type="text"
+              placeholder="example@gmail.com"
+              className="border border-black p-1 my-2"
+            ></input>
+          </label>
+          <label>
+            {" "}
+            <p> Contraseña:</p>
+            <input
+              type="password"
+              placeholder="****************"
+              className="border border-black p-1 my-2"
+            ></input>
+          </label>
+          <button className="font-bold py-4 px-14 bg-[#6d57e2] text-white rounded-md my-1">
+            Ingresar
+          </button>
+          <Link
+            to="/register/"
+            className="text-[#2e282e] underline  hover:text-gray-300 px-9 py-1"
+            onClick={() => setLogin(false)}
+          >
+            Registrar
+          </Link>
+        </div>
+      )}
+      {/*Div Add Shop Mobile */}
       {shopOpen && (
-        <div className="  bg-white border border-gray-300 p-4 flex flex-col w-full animate-fade-down  ">
+        <div className="fixed bottom-0 bg-white border border-gray-300 p-4 flex flex-col w-full animate-fade-down md:hidden  ">
           {cartItems.length === 0 ? (
             <p className="text-gray-500 text-center py-4 text-xl">
               El carrito está vacío.
