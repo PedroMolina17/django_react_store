@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import Product from "./pages/Product";
 import Producto from "./pages/Producto";
 import Games from "./pages/Games";
+import Register from "./pages/Register";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/games" element={<Games />} />
             <Route path="/products" element={<Product />} />
             <Route path="/productos" element={<Producto />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </div>
       </BrowserRouter>
