@@ -6,7 +6,7 @@ import { updateQuantity } from "../features/product/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
-import { VscAccount } from "react-icons/vsc";
+import { FaUser } from "react-icons/fa";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const Navigation = () => {
                 setshopOpen(false);
               }}
             >
-              <VscAccount className="text-2xl relative "></VscAccount>
+              <FaUser className="text-2xl relative "></FaUser>
             </Link>
 
             {/* Shop Open*/}
@@ -108,6 +108,7 @@ const Navigation = () => {
               <Link
                 to="/register/"
                 className="text-[#2e282e] underline  hover:text-gray-300 px-9 py-1"
+                onClick={() => setLogin(false)}
               >
                 Registrar
               </Link>
@@ -115,7 +116,7 @@ const Navigation = () => {
           )}
           {/* Shop Div*/}
           {shopOpen && (
-            <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col w-1/4 animate-fade-down max-md:hidden">
+            <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col w-1/4 animate-fade-down max-md:hidden ">
               {cartItems.length === 0 ? (
                 <p className="text-gray-500 text-center py-4 text-xl">
                   El carrito está vacío.
@@ -202,7 +203,7 @@ const Navigation = () => {
               setshopOpen(false);
             }}
           >
-            <VscAccount className="text-2xl relative "></VscAccount>
+            <FaUser className="text-2xl relative "></FaUser>
           </Link>
           {/* Shop */}
           <Link
@@ -223,7 +224,7 @@ const Navigation = () => {
       </div>{" "}
       {login && (
         <div className="fixed bottom-0  left-0 right-0 bg-white border border-gray-300 p-4 flex flex-col font-bold  text-center items-center w-full md:hidden  ">
-          <VscAccount className="text-4xl"></VscAccount>
+          <FaUser className="text-4xl"></FaUser>
           <label>
             {" "}
             <p> Usuario:</p>
