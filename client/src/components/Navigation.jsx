@@ -75,7 +75,7 @@ const Navigation = () => {
             >
               <FaCartShopping className=" text-2xl relative"></FaCartShopping>
               {cartItems.length > 0 && (
-                <span className="absolute h-6 w-6 bg-white border-white text-black rounded-full top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-center text-sm font-bold">
+                <span className="absolute h-6 w-6 bg-white border-white text-black rounded-full top-0 left-full transform -translate-x-1/2 -translate-y-1/2  text-center text-sm font-bold opacity-80">
                   {cartItems.length}
                 </span>
               )}
@@ -207,7 +207,7 @@ const Navigation = () => {
           </Link>
           {/* Shop */}
           <Link
-            className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2 py-1 relative"
+            className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2 py-1 relative mx-2"
             onClick={() => {
               setshopOpen(!shopOpen);
               setLogin(false);
@@ -215,7 +215,7 @@ const Navigation = () => {
           >
             <FaCartShopping className=" text-2xl relative"></FaCartShopping>
             {cartItems.length > 0 && (
-              <span className="absolute h-6 w-6 bg-white border-white text-black rounded-full top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-center text-sm font-bold">
+              <span className="absolute h-6 w-6 bg-white border-white text-black rounded-full top-1 left-full  transform -translate-x-1/2 -translate-y-1/2  text-center text-sm font-bold opacity-70">
                 {cartItems.length}
               </span>
             )}
