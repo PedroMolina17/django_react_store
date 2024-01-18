@@ -30,6 +30,12 @@ const Navigation = () => {
   const removeItem = (id) => {
     dispatch(removeItemFromCart(id));
   };
+
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + item.precio * item.cantidad,
+    0
+  );
+
   return (
     <div className="">
       <div className=" fixed  left-0  top-0 right-0 flex justify-between bg-[#6d57e2] p-3 ">
@@ -128,7 +134,7 @@ const Navigation = () => {
           )}
           {/* Shop Div*/}
           {shopOpen && (
-            <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col w-1/4 animate-fade-down max-md:hidden ">
+            <div className="absolute top-full right-0 bg-white border border-gray-300 p-1 flex flex-col w-1/4 animate-fade-down max-md:hidden ">
               {cartItems.length === 0 ? (
                 <p className="text-gray-500 text-center py-4 text-xl">
                   El carrito está vacío.
@@ -142,9 +148,17 @@ const Navigation = () => {
                         className="w-8 h-8"
                         alt={item.nombre}
                       ></img>
-                      <span className="mx-2">{item.nombre}</span>{" "}
+                      <div className="flex flex-col mx-3">
+                        <div>
+                          <p className="font-bold">{item.nombre}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs">{item.precio}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div>
+
+                    <div className=" flex justify-center items-center">
                       <button
                         onClick={() =>
                           handleQuantityChange(item.id, item.cantidad - 1)
@@ -153,7 +167,8 @@ const Navigation = () => {
                         <CgMathMinus></CgMathMinus>
                       </button>
                       <input
-                        type="number"
+                        type="text"
+                        disabled
                         value={item.cantidad}
                         onChange={(e) =>
                           handleQuantityChange(item.id, e.target.value)
@@ -178,7 +193,7 @@ const Navigation = () => {
                 ))
               )}
               <button className="font-bold py-4 px-14 bg-[#6d57e2] text-white rounded-md my-1">
-                COMPRAR
+                COMPRAR S/{totalPrice}
               </button>
             </div>
           )}
@@ -203,17 +218,19 @@ const Navigation = () => {
         </div>
         <span></span>
         {navbarOpen ? (
-          <ul className="flex flex-col py-4 items-center justify-center text-center">
+          <ul className="flex flex-col py-1 items-center justify-center text-center">
             <li>
               <Link
                 to={"/productos"}
-                className="block py-2 pl-3 pr-4 text-slate-300 sm:text-xl rounded md:p-0 hover:text-white"
+                className="block py-1  text-slate-300 sm:text-xl rounded md:p-0 hover:text-white"
+                onClick={() => setNavbarOpen(false)}
               >
                 Productos
               </Link>
               <Link
                 to="/games/"
-                className="block py-2 pl-3 pr-4 text-slate-300  sm:text-xl rounded md:p-0 hover:text-white"
+                className="block py-1  text-slate-300  sm:text-xl rounded md:p-0 hover:text-white"
+                onClick={() => setNavbarOpen(false)}
               >
                 Juegos
               </Link>
@@ -298,9 +315,17 @@ const Navigation = () => {
                     className="w-8 h-8"
                     alt={item.nombre}
                   ></img>
-                  <span className="mx-2">{item.nombre}</span>{" "}
+                  <div className="flex flex-col mx-3">
+                    <div>
+                      <p className="text-sm font-bold">{item.nombre}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs">{item.precio}</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
+
+                <div className=" flex justify-center items-center">
                   <button
                     onClick={() =>
                       handleQuantityChange(item.id, item.cantidad - 1)
@@ -309,12 +334,13 @@ const Navigation = () => {
                     <CgMathMinus></CgMathMinus>
                   </button>
                   <input
-                    type="number"
+                    type="text"
+                    disabled
                     value={item.cantidad}
                     onChange={(e) =>
-                      handleQuantityChange(index, e.target.value)
+                      handleQuantityChange(item.id, e.target.value)
                     }
-                    className="w-12 text-center"
+                    className="w-12 text-center border"
                   />
                   <button
                     onClick={() =>
@@ -323,12 +349,18 @@ const Navigation = () => {
                   >
                     <CgMathPlus></CgMathPlus>
                   </button>
+                  <button
+                    className="mx-2 text-red-400"
+                    onClick={() => removeItem(item.id)}
+                  >
+                    <FaTrash></FaTrash>
+                  </button>
                 </div>
               </div>
             ))
           )}
           <button className="font-bold py-4 px-14 bg-[#6d57e2] text-white rounded-md my-1">
-            COMPRAR
+            COMPRAR S/{totalPrice}
           </button>
         </div>
       )}
