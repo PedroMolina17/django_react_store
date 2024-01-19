@@ -39,31 +39,31 @@ const Navigation = () => {
   return (
     <div className="">
       <div className=" fixed  left-0  top-0 right-0 flex justify-between bg-[#6d57e2] p-3 ">
-        <nav className="flex fixed z-10 bg-[#6d57e2] justify-between items-center p-8 px-32 max-md:hidden top-0 right-0 left-0">
+        <nav className="flex fixed z-10 bg-[#6d57e2] justify-between items-center py-8 px-4 lg:px-20  max-md:hidden top-0 right-0 left-0">
           <div className="text-[#fff4fe] text-2xl">STORE</div>
           <ul className="">
             <li className="flex text-xl ">
               <Link
                 to="/store-create/"
-                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-9 py-1"
+                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-7 py-1"
               >
                 Juegos
               </Link>
               <Link
                 to="/store/"
-                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-9 py-1"
+                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-7 py-1"
               >
                 Productos
               </Link>
               <Link
                 to="/games/"
-                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-9 py-1"
+                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-7 py-1"
               >
                 Juegos
               </Link>{" "}
               <Link
                 to="/productos/"
-                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-9 py-1"
+                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-7 py-1"
               >
                 Productos
               </Link>
@@ -101,14 +101,14 @@ const Navigation = () => {
           </div>
           {/* Login Div*/}
           {login && (
-            <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col font-bold  text-center w-1/4   ">
+            <div className="absolute top-full right-0 bg-white border border-gray-300 p-4 flex flex-col font-bold  text-center w-1/3 lg:w-1/4   ">
               <label>
                 {" "}
                 <p> Usuario:</p>
                 <input
                   type="text"
                   placeholder="example@gmail.com"
-                  className="border border-black p-1 my-2"
+                  className="border w-full border-black p-1 my-2 mx-auto text-center rounded-md"
                 ></input>
               </label>
               <label>
@@ -117,7 +117,7 @@ const Navigation = () => {
                 <input
                   type="password"
                   placeholder="****************"
-                  className="border border-black p-1 my-2"
+                  className="border w-full border-black p-1 my-2 mx-auto text-center rounded-md"
                 ></input>
               </label>
               <button className="font-bold py-4 px-14 bg-[#6d57e2] text-white rounded-md my-1">
@@ -134,7 +134,7 @@ const Navigation = () => {
           )}
           {/* Shop Div*/}
           {shopOpen && (
-            <div className="absolute top-full right-0 bg-white border border-gray-300 p-1 flex flex-col w-1/4 animate-fade-down max-md:hidden ">
+            <div className="absolute top-full right-0 bg-white border border-gray-300 p-1 flex flex-col w-1/3 lg:w-1/4  animate-fade-down max-md:hidden ">
               {cartItems.length === 0 ? (
                 <p className="text-gray-500 text-center py-4 text-xl">
                   El carrito está vacío.
@@ -192,7 +192,7 @@ const Navigation = () => {
                   </div>
                 ))
               )}
-              <button className="font-bold py-4 px-14 bg-[#6d57e2] text-white rounded-md my-1">
+              <button className="font-bold py-3 px-14 bg-[#6d57e2] text-white rounded-md my-1">
                 COMPRAR S/{totalPrice}
               </button>
             </div>
@@ -359,7 +359,7 @@ const Navigation = () => {
               </div>
             ))
           )}
-          <button className="font-bold py-4 px-14 bg-[#6d57e2] text-white rounded-md my-1">
+          <button className="font-bold py-3 px-14 bg-[#6d57e2] text-white rounded-md my-1">
             COMPRAR S/{totalPrice}
           </button>
         </div>

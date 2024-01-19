@@ -12,7 +12,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Navigation />
-        <div className="container mx-auto px-12 mt-24 ">
+        <div className="container mx-auto mt-24 ">
           <Routes>
             <Route path="/" element={<Navigate to="/store" />} />
             <Route path="/store" element={<Store />} />
