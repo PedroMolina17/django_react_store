@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { FaUser, FaTrash } from "react-icons/fa";
-
 const Navigation = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);

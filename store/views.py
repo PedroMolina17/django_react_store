@@ -5,7 +5,29 @@ from rest_framework.response import Response
 from .models import Producto
 from .models import Games
 from .models import Categoria
-# Create your views here.
+from rest_framework.decorators import api_view
+from rest_framework import status
+from django.contrib.auth.models import User
+
+
+@api_view(['POST'])
+def register_user(request):
+    print(request.data)
+    if request.method == 'POST':
+        email = request.data.get('email')
+        password = request.data.get('password')
+        is_admin = request.data.get('is_admin', False)
+        username = request.data.get('username') or email
+
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
+        if is_admin:
+            user.is_staff = True
+            user.save()
+        return Response({'message': 'Usuario registrado exitosamente'}, status=status.HTTP_201_CREATED)
 
 
 class StoreView(viewsets.ModelViewSet):
