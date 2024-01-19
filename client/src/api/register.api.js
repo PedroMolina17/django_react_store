@@ -1,21 +1,18 @@
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
-const handleRegister = async (email, password) => {
+const handleRegister = async (username, email, password) => {
   const userData = {
-    username: email,
+    username: username,
     email: email,
     password: password,
   };
 
   try {
-    const response = await axios.post(
-      "http://localhost:8000/store/api/register/",
-      userData
-    );
-
-    console.log(response.data.message);
+    await axios.post("http://localhost:8000/store/api/register/", userData);
+    toast.success("Usuario Creado");
   } catch (error) {
-    console.error("Error al registrar usuario:", error);
+    toast.error("Error al Crear usuario");
   }
 };
 export default handleRegister;
