@@ -10,12 +10,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { FaUser, FaTrash } from "react-icons/fa";
+import { handleLogin } from "../api/register.api";
+
 const Navigation = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [shopOpen, setshopOpen] = useState(false);
   const [login, setLogin] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleQuantityChange = (id, newQuantity) => {
     const quantity =
@@ -35,10 +39,20 @@ const Navigation = () => {
     0
   );
 
+  const handleLoginUser = async () => {
+    try {
+      // Utiliza los valores de los estados de username y password
+      const userData = await handleLogin(username, password);
+      console.log(userData.username);
+    } catch (error) {
+      // Manejar errores específicos del inicio de sesión si es necesario
+    }
+  };
+
   return (
     <div className="">
-      <div className=" fixed  left-0  top-0 right-0 flex justify-between bg-[#6d57e2] p-3 ">
-        <nav className="flex fixed z-10 bg-[#6d57e2] justify-between items-center py-8 px-4 lg:px-20  max-md:hidden top-0 right-0 left-0">
+      <div className=" fixed  left-0  top-0 right-0 flex justify-between bg-[#6d57e2] p-3  ">
+        <nav className="flex fixed z-10 bg-[#6d57e2] justify-between items-center py-8 px-4 lg:px-20  max-md:hidden top-0 right-0 left-0 ">
           <div className="text-[#fff4fe] text-2xl">STORE</div>
           <ul className="">
             <li className="flex text-xl ">
@@ -107,6 +121,8 @@ const Navigation = () => {
                 <input
                   type="text"
                   placeholder="example@gmail.com"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="border w-full border-black p-1 my-2 mx-auto text-center rounded-md"
                 ></input>
               </label>
@@ -117,9 +133,14 @@ const Navigation = () => {
                   type="password"
                   placeholder="****************"
                   className="border w-full border-black p-1 my-2 mx-auto text-center rounded-md"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 ></input>
               </label>
-              <button className="font-bold py-4 px-14 bg-[#6d57e2] text-white rounded-md my-1">
+              <button
+                className="font-bold py-4 px-14 bg-[#6d57e2] text-white rounded-md my-1"
+                onClick={handleLoginUser}
+              >
                 Ingresar
               </button>{" "}
               <Link

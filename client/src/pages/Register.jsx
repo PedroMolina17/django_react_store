@@ -29,7 +29,7 @@ const Register = () => {
               type="text"
               onChange={(e) => setUserName(e.target.value)}
               className="border-2 border-gray-500 rounded-md flex w-80 md:w-96 p-2  m-4"
-              placeholder="example@gmail.com"
+              placeholder="username"
             />
           </label>
         </div>

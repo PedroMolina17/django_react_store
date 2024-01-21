@@ -8,6 +8,37 @@ from .models import Categoria
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import api_view, permission_classes
+from django.views.decorators.csrf import csrf_exempt
+
+
+from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def user_login(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    user = authenticate(request, username=username, password=password)
+
+    if user:
+        login(request, user)
+        return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
+    else:
+        return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+@api_view(['POST'])
+@login_required
+def user_logout(request):
+    logout(request)
+    return Response({'message': 'Cierre de sesión exitoso'}, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
