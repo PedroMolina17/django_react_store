@@ -24,7 +24,6 @@ from django.views.decorators.csrf import csrf_exempt
 def user_login(request):
     username = request.data.get('username')
     password = request.data.get('password')
-
     user = authenticate(request, username=username, password=password)
 
     if user:
