@@ -25,11 +25,9 @@ export const handleLogin = async (username, password) => {
     // Realizar el inicio de sesión
     const response = await axios.post(
       "http://localhost:8000/store/api/login/",
-      loginData
+      loginData,
+      console.log(loginData)
     );
-
-    // Puedes almacenar el token de sesión u otra información relevante aquí
-
     toast.success("Inicio de sesión exitoso");
     return response.data; // Puedes devolver datos adicionales si es necesario
   } catch (error) {

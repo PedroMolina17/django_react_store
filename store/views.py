@@ -29,7 +29,7 @@ def user_login(request):
 
     if user:
         login(request, user)
-        return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
+        return Response({'message': 'Inicio de sesión exitoso', 'username': user.username}, status=status.HTTP_200_OK)
     else:
         return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
 

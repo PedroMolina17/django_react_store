@@ -11,6 +11,7 @@ import { useState } from "react";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { FaUser, FaTrash } from "react-icons/fa";
 import { handleLogin } from "../api/register.api";
+import { Toaster, ToastBar } from "react-hot-toast";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -41,9 +42,8 @@ const Navigation = () => {
 
   const handleLoginUser = async () => {
     try {
-      // Utiliza los valores de los estados de username y password
       const userData = await handleLogin(username, password);
-      console.log(userData.username);
+      setUsername(userData.username || "");
     } catch (error) {
       // Manejar errores específicos del inicio de sesión si es necesario
     }
@@ -84,7 +84,6 @@ const Navigation = () => {
           </ul>
           <div className="flex items-center gap-6">
             {/* Login*/}
-
             <Link
               className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2
                 py-1 relative"
@@ -383,7 +382,20 @@ const Navigation = () => {
             COMPRAR S/{totalPrice}
           </button>
         </div>
-      )}
+      )}{" "}
+      <Toaster>
+        {(t) => (
+          <ToastBar
+            toast={t}
+            style={{
+              ...t.style,
+              animation: t.visible
+                ? "custom-enter 1s ease"
+                : "custom-exit 1s ease",
+            }}
+          />
+        )}
+      </Toaster>
     </div>
   );
 };

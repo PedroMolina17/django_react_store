@@ -1,7 +1,8 @@
 import { FaUserAlt } from "react-icons/fa";
 import handleRegister from "../api/register.api";
 import { useState } from "react";
-import { Toaster, toast, ToastBar } from "react-hot-toast";
+import { toast } from "react-hot-toast";
+
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -82,22 +83,6 @@ const Register = () => {
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam uod
           earum sit unde dolore, expedita quo obcaecati amet?
         </p>{" "}
-        <div>
-          <Toaster>
-            {(t) => (
-              <ToastBar
-                toast={t}
-                style={{
-                  ...t.style,
-                  animation: t.visible
-                    ? "custom-enter 1s ease"
-                    : "custom-exit 1s ease",
-                }}
-              />
-            )}
-          </Toaster>
-          ;
-        </div>
       </div>{" "}
     </form>
   );
