@@ -12,6 +12,7 @@ import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { FaUser, FaTrash } from "react-icons/fa";
 import { handleLogin } from "../api/register.api";
 import { Toaster, ToastBar } from "react-hot-toast";
+import { handleAgregarAlCarrito } from "../api/addcart.api";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const Navigation = () => {
     try {
       const userData = await handleLogin(username, password);
       setUsername(userData.username || "");
+      dispatch(handleAgregarAlCarrito(5, 5, 1));
     } catch (error) {
       // Manejar errores específicos del inicio de sesión si es necesario
     }

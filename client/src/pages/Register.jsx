@@ -1,6 +1,5 @@
 import { FaUserAlt } from "react-icons/fa";
 import handleRegister from "../api/register.api";
-import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 const Register = () => {
