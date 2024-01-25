@@ -42,4 +42,3 @@ class CarritoItem(models.Model):
 
     def __str__(self):
         return f'{self.cantidad} de {self.producto.nombre} en el carrito de {self.usuario.username}'
-# Create your models here.

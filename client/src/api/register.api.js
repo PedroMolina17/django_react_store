@@ -22,7 +22,6 @@ export const handleLogin = async (username, password) => {
   };
 
   try {
-    // Realizar el inicio de sesión
     const response = await axios.post(
       "http://localhost:8000/store/api/login/",
       loginData,
@@ -34,6 +33,16 @@ export const handleLogin = async (username, password) => {
     toast.error("Error al iniciar sesión");
     console.error("Error en el inicio de sesión:", error);
     throw error; // Puedes manejar este error según tus necesidades
+  }
+};
+export const handleLogout = async () => {
+  try {
+    await axios.post("http://localhost:8000/store/api/logout/");
+    toast.success("Cierre de sesión exitoso");
+  } catch (error) {
+    toast.error("Error al cerrar sesión");
+    console.error("Error en el cierre de sesión:", error);
+    throw error;
   }
 };
 

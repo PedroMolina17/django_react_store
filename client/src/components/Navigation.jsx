@@ -10,9 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { FaUser, FaTrash } from "react-icons/fa";
-import { handleLogin } from "../api/register.api";
+import { handleLogin, handleLogout } from "../api/register.api";
 import { Toaster, ToastBar } from "react-hot-toast";
 import { handleAgregarAlCarrito } from "../api/addcart.api";
+import { IoLogOut } from "react-icons/io5";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Navigation = () => {
   const [login, setLogin] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [signin, setSingIn] = useState(false);
   const handleQuantityChange = (id, newQuantity) => {
     const quantity =
       newQuantity === "" || isNaN(newQuantity) ? 0 : parseInt(newQuantity, 10);
@@ -45,12 +46,22 @@ const Navigation = () => {
     try {
       const userData = await handleLogin(username, password);
       setUsername(userData.username || "");
-      dispatch(handleAgregarAlCarrito(5, 5, 1));
+      setSingIn(true);
+      //Agregar al carrito -dispatch(handleAgregarAlCarrito(5, 5, 1));
     } catch (error) {
       // Manejar errores específicos del inicio de sesión si es necesario
     }
   };
 
+  const handleLogoutUser = async () => {
+    try {
+      await handleLogout();
+      setSingIn(false);
+    } catch (error) {
+      // Maneja el error, si es necesario
+      console.error("Error en el logout:", error);
+    }
+  };
   return (
     <div className="">
       <div className=" fixed  left-0  top-0 right-0 flex justify-between bg-[#6d57e2] p-3  ">
@@ -86,17 +97,29 @@ const Navigation = () => {
           </ul>
           <div className="flex items-center gap-6">
             {/* Login*/}
-            <Link
-              className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2
+            {signin ? (
+              <Link
+                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2
                 py-1 relative"
-              onClick={() => {
-                setLogin(!login);
-                setshopOpen(false);
-              }}
-            >
-              <FaUser className="text-2xl relative "></FaUser>
-            </Link>
-
+                onClick={() => {
+                  setshopOpen(false);
+                  handleLogoutUser();
+                }}
+              >
+                <IoLogOut className="text-2xl relative "></IoLogOut>
+              </Link>
+            ) : (
+              <Link
+                className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2
+              py-1 relative"
+                onClick={() => {
+                  setLogin(!login);
+                  setshopOpen(false);
+                }}
+              >
+                <FaUser className="text-2xl relative "></FaUser>
+              </Link>
+            )}
             {/* Shop Open*/}
             <Link
               className="text-[#fff4fe] hover:underline hover:text-gray-300 px-2 py-1 relative"
@@ -140,7 +163,10 @@ const Navigation = () => {
               </label>
               <button
                 className="font-bold py-4 px-14 bg-[#6d57e2] text-white rounded-md my-1"
-                onClick={handleLoginUser}
+                onClick={() => {
+                  setLogin(!login);
+                  handleLoginUser();
+                }}
               >
                 Ingresar
               </button>{" "}
