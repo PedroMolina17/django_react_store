@@ -33,7 +33,6 @@ def user_login(request):
 
 
 @api_view(['POST'])
-@login_required
 def user_logout(request):
     logout(request)
     return Response({'message': 'Cierre de sesión exitoso'}, status=status.HTTP_200_OK)

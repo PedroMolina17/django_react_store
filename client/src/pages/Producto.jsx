@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllStoreByCategoria } from "../api/producto.api";
 import Productcard from "../components/Productcard";
 import { addToCart } from "../features/product/cartSlice";
@@ -29,8 +29,6 @@ export default function Producto() {
       toast("Producto Añadido! ✅ ");
     }
   };
-
-  console.log(useSelector((state) => state.cart.cartItems));
 
   return (
     <div className="">
